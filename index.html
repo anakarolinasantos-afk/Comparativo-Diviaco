@@ -27,6 +27,8 @@
     --red-bg: #fff1f1;
     --red-border: rgba(220,38,38,0.25);
     --orange: #ea580c;
+    --orange-bg: #fff7ed;
+    --orange-border: rgba(234,88,12,0.25);
   }
 
   body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; min-height: 100vh; }
@@ -93,8 +95,6 @@
   }
   .total-highlight-label { font-size: 11px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
   .total-highlight-val { font-size: 28px; font-weight: 700; line-height: 1; }
-  .comp-card.safe .total-highlight-val { color: var(--text); }
-  .comp-card.risk .total-highlight-val { color: var(--text); }
   .total-highlight-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
   /* BLOCKS */
@@ -106,19 +106,23 @@
   .block.green { background: var(--green-bg); border: 1px solid var(--green-border); }
   .block.blue  { background: var(--blue-bg);  border: 1px solid var(--blue-border); }
   .block.red   { background: var(--red-bg);   border: 1px solid var(--red-border); }
+  .block.orange { background: var(--orange-bg); border: 1px solid var(--orange-border); margin-top: 4px; }
 
   .block-left { flex: 1; }
   .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
   .block.green .block-label { color: var(--green); }
   .block.blue  .block-label { color: var(--blue); }
   .block.red   .block-label { color: var(--red); }
+  .block.orange .block-label { color: var(--orange); }
+  
   .block-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
   .block-val { font-size: 15px; font-weight: 700; white-space: nowrap; }
   .block.green .block-val { color: var(--green); }
   .block.blue  .block-val { color: var(--blue); }
   .block.red   .block-val { color: var(--red); }
+  .block.orange .block-val { color: var(--orange); font-size: 18px; }
 
-  .risk-detail { margin-top: 6px; border-top: 1px solid var(--red-border); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .risk-detail { margin-top: 6px; border-top: 1px solid var(--red-border); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; width: 100%; }
   .risk-detail-row { display: flex; justify-content: space-between; font-size: 11px; }
   .risk-detail-row span:first-child { color: var(--muted2); }
   .risk-detail-row span:last-child { color: var(--red); font-weight: 500; }
@@ -144,10 +148,7 @@
     border-radius: 14px; padding: 24px; margin-bottom: 8px;
   }
   .chart-title { font-size: 12px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 16px; }
-  .chart-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; }
-  .chart-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted2); font-weight: 500; }
-  .chart-legend-dot { width: 12px; height: 12px; border-radius: 3px; }
-
+  
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
@@ -178,58 +179,37 @@
   <!-- ── K545 ── -->
   <div id="proc-k545" class="proc-panel active">
     <div class="comp-grid">
-
       <div class="comp-card safe">
-        <div class="comp-card-header">
-          <span class="comp-card-title">✓ NCM Correta</span>
-          <span class="comp-card-icon">🟢</span>
-        </div>
+        <div class="comp-card-header"><span class="comp-card-title">✓ NCM Correta</span><span class="comp-card-icon">🟢</span></div>
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 698.564,16</div>
-          <div class="total-highlight-sub">Impostos + Despachante + Antidumping</div>
         </div>
         <div class="blocks">
           <div class="block green">
-            <div class="block-left">
-              <div class="block-label">Impostos + Despachante</div>
-              <div class="block-desc">Tributos regulares do processo</div>
-            </div>
+            <div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div>
             <div class="block-val">R$ 220.406,40</div>
           </div>
           <div class="block blue">
-            <div class="block-left">
-              <div class="block-label">Antidumping</div>
-              <div class="block-desc">Direito antidumping — NCM correta</div>
-            </div>
+            <div class="block-left"><div class="block-label">Antidumping</div><div class="block-desc">Direito antidumping — NCM correta</div></div>
             <div class="block-val">R$ 478.157,76</div>
           </div>
         </div>
       </div>
 
       <div class="comp-card risk">
-        <div class="comp-card-header">
-          <span class="comp-card-title">⚠ Troca de NCM</span>
-          <span class="comp-card-icon">🟠</span>
-        </div>
+        <div class="comp-card-header"><span class="comp-card-title">⚠ Troca de NCM</span><span class="comp-card-icon">🟠</span></div>
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 382.382,94</div>
-          <div class="total-highlight-sub">+ exposição de até R$ 1.239.719,80 se canal vermelho</div>
         </div>
         <div class="blocks">
           <div class="block green">
-            <div class="block-left">
-              <div class="block-label">Impostos + Despachante</div>
-              <div class="block-desc">Tributos regulares do processo</div>
-            </div>
+            <div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div>
             <div class="block-val">R$ 220.406,40</div>
           </div>
           <div class="block blue">
-            <div class="block-left">
-              <div class="block-label">ICMS</div>
-              <div class="block-desc">Imposto adicional — nova NCM</div>
-            </div>
+            <div class="block-left"><div class="block-label">ICMS</div><div class="block-desc">Imposto adicional — nova NCM</div></div>
             <div class="block-val">R$ 161.976,54</div>
           </div>
           <div class="block red">
@@ -245,38 +225,19 @@
             </div>
             <div class="block-val">R$ 857.336,86</div>
           </div>
+          <div class="block orange">
+            <div class="block-left"><div class="block-label">Total no pior cenário</div><div class="block-desc">Impostos + ICMS + Canal Vermelho</div></div>
+            <div class="block-val">R$ 1.239.719,80</div>
+          </div>
         </div>
       </div>
     </div>
-
+    <!-- Delta Cards e Gráfico K545 ... -->
     <div class="delta-row">
-      <div class="delta-card">
-        <div class="delta-icon">💰</div>
-        <div>
-          <div class="delta-label">Economia da ncm trocada se não houver canal</div>
-          <div class="delta-val blue">- R$ 316.181,22</div>
-          <div class="delta-sub">NCM trocada vs. NCM correta (sem canal vermelho)</div>
-        </div>
-      </div>
-      <div class="delta-card">
-        <div class="delta-icon">⚠️</div>
-        <div>
-          <div class="delta-label">Exposição no pior cenário</div>
-          <div class="delta-val red">+ R$ 541.155,64</div>
-          <div class="delta-sub">Custo total c/ risco vs. NCM correta (impostos + ICMS + multas)</div>
-        </div>
-      </div>
+        <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia sem risco</div><div class="delta-val blue">- R$ 316.181,22</div></div></div>
+        <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 541.155,64</div></div></div>
     </div>
-
-    <div class="chart-wrap">
-      <div class="chart-title">Comparativo visual — K545</div>
-      <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#1e9e62"></span>Impostos + Desp.</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#2563eb"></span>Antidumping / ICMS</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#dc2626"></span>Risco (canal vermelho)</span>
-      </div>
-      <div style="position:relative;height:260px"><canvas id="chart-k545"></canvas></div>
-    </div>
+    <div class="chart-wrap"><div class="chart-title">Comparativo visual — K545</div><div style="position:relative;height:260px"><canvas id="chart-k545"></canvas></div></div>
   </div>
 
   <!-- ── K559 ── -->
@@ -287,11 +248,10 @@
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 855.822,05</div>
-          <div class="total-highlight-sub">Impostos + Despachante + Antidumping</div>
         </div>
         <div class="blocks">
-          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div><div class="block-val">R$ 262.900,58</div></div>
-          <div class="block blue"><div class="block-left"><div class="block-label">Antidumping</div><div class="block-desc">Direito antidumping — NCM correta</div></div><div class="block-val">R$ 592.921,47</div></div>
+          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div></div><div class="block-val">R$ 262.900,58</div></div>
+          <div class="block blue"><div class="block-left"><div class="block-label">Antidumping</div></div><div class="block-val">R$ 592.921,47</div></div>
         </div>
       </div>
       <div class="comp-card risk">
@@ -299,15 +259,12 @@
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 456.805,33</div>
-          <div class="total-highlight-sub">+ exposição de até R$ 1.519.913,53 se canal vermelho</div>
         </div>
         <div class="blocks">
-          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div><div class="block-val">R$ 262.900,58</div></div>
-          <div class="block blue"><div class="block-left"><div class="block-label">ICMS</div><div class="block-desc">Imposto adicional — nova NCM</div></div><div class="block-val">R$ 193.904,75</div></div>
+          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div></div><div class="block-val">R$ 262.900,58</div></div>
+          <div class="block blue"><div class="block-left"><div class="block-label">ICMS</div></div><div class="block-val">R$ 193.904,75</div></div>
           <div class="block red">
-            <div class="block-left">
-              <div class="block-label">Risco — Canal Vermelho</div>
-              <div class="block-desc">Exigências se houver fiscalização</div>
+            <div class="block-left"><div class="block-label">Risco — Canal Vermelho</div>
               <div class="risk-detail">
                 <div class="risk-detail-row"><span>Antidumping (principal)</span><span>R$ 592.921,47</span></div>
                 <div class="risk-detail-row"><span>Multa de Mora (3,3%)</span><span>R$ 19.566,41</span></div>
@@ -317,22 +274,18 @@
             </div>
             <div class="block-val">R$ 1.063.108,20</div>
           </div>
+          <div class="block orange">
+            <div class="block-left"><div class="block-label">Total no pior cenário</div><div class="block-desc">Impostos + ICMS + Canal Vermelho</div></div>
+            <div class="block-val">R$ 1.519.913,53</div>
+          </div>
         </div>
       </div>
     </div>
     <div class="delta-row">
-      <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia da ncm trocada se não houver canal</div><div class="delta-val blue">- R$ 399.016,72</div><div class="delta-sub">NCM trocada vs. NCM correta (sem canal vermelho)</div></div></div>
-      <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 664.091,48</div><div class="delta-sub">Custo total c/ risco vs. NCM correta (impostos + ICMS + multas)</div></div></div>
+        <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia sem risco</div><div class="delta-val blue">- R$ 399.016,72</div></div></div>
+        <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 664.091,48</div></div></div>
     </div>
-    <div class="chart-wrap">
-      <div class="chart-title">Comparativo visual — K559</div>
-      <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#1e9e62"></span>Impostos + Desp.</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#2563eb"></span>Antidumping / ICMS</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#dc2626"></span>Risco (canal vermelho)</span>
-      </div>
-      <div style="position:relative;height:260px"><canvas id="chart-k559"></canvas></div>
-    </div>
+    <div class="chart-wrap"><div class="chart-title">Comparativo visual — K559</div><div style="position:relative;height:260px"><canvas id="chart-k559"></canvas></div></div>
   </div>
 
   <!-- ── K578 ── -->
@@ -343,11 +296,10 @@
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 732.796,51</div>
-          <div class="total-highlight-sub">Impostos + Despachante + Antidumping</div>
         </div>
         <div class="blocks">
-          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div><div class="block-val">R$ 235.183,02</div></div>
-          <div class="block blue"><div class="block-left"><div class="block-label">Antidumping</div><div class="block-desc">Direito antidumping — NCM correta</div></div><div class="block-val">R$ 497.613,49</div></div>
+          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div></div><div class="block-val">R$ 235.183,02</div></div>
+          <div class="block blue"><div class="block-left"><div class="block-label">Antidumping</div></div><div class="block-val">R$ 497.613,49</div></div>
         </div>
       </div>
       <div class="comp-card risk">
@@ -355,15 +307,12 @@
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 401.384,49</div>
-          <div class="total-highlight-sub">+ exposição de até R$ 1.293.605,48 se canal vermelho</div>
         </div>
         <div class="blocks">
-          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div><div class="block-val">R$ 235.183,02</div></div>
-          <div class="block blue"><div class="block-left"><div class="block-label">ICMS</div><div class="block-desc">Imposto adicional — nova NCM</div></div><div class="block-val">R$ 166.201,47</div></div>
+          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div></div><div class="block-val">R$ 235.183,02</div></div>
+          <div class="block blue"><div class="block-left"><div class="block-label">ICMS</div></div><div class="block-val">R$ 166.201,47</div></div>
           <div class="block red">
-            <div class="block-left">
-              <div class="block-label">Risco — Canal Vermelho</div>
-              <div class="block-desc">Exigências se houver fiscalização</div>
+            <div class="block-left"><div class="block-label">Risco — Canal Vermelho</div>
               <div class="risk-detail">
                 <div class="risk-detail-row"><span>Antidumping (principal)</span><span>R$ 497.613,49</span></div>
                 <div class="risk-detail-row"><span>Multa de Mora (3,3%)</span><span>R$ 16.421,25</span></div>
@@ -373,22 +322,18 @@
             </div>
             <div class="block-val">R$ 892.220,99</div>
           </div>
+          <div class="block orange">
+            <div class="block-left"><div class="block-label">Total no pior cenário</div><div class="block-desc">Impostos + ICMS + Canal Vermelho</div></div>
+            <div class="block-val">R$ 1.293.605,48</div>
+          </div>
         </div>
       </div>
     </div>
     <div class="delta-row">
-      <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia da ncm trocada se não houver canal</div><div class="delta-val blue">- R$ 331.412,02</div><div class="delta-sub">NCM trocada vs. NCM correta (sem canal vermelho)</div></div></div>
-      <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 560.808,97</div><div class="delta-sub">Custo total c/ risco vs. NCM correta (impostos + ICMS + multas)</div></div></div>
+        <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia sem risco</div><div class="delta-val blue">- R$ 331.412,02</div></div></div>
+        <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 560.808,97</div></div></div>
     </div>
-    <div class="chart-wrap">
-      <div class="chart-title">Comparativo visual — K578</div>
-      <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#1e9e62"></span>Impostos + Desp.</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#2563eb"></span>Antidumping / ICMS</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#dc2626"></span>Risco (canal vermelho)</span>
-      </div>
-      <div style="position:relative;height:260px"><canvas id="chart-k578"></canvas></div>
-    </div>
+    <div class="chart-wrap"><div class="chart-title">Comparativo visual — K578</div><div style="position:relative;height:260px"><canvas id="chart-k578"></canvas></div></div>
   </div>
 
   <!-- ── K596 ── -->
@@ -399,11 +344,10 @@
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 697.930,92</div>
-          <div class="total-highlight-sub">Impostos + Despachante + Antidumping</div>
         </div>
         <div class="blocks">
-          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div><div class="block-val">R$ 221.152,64</div></div>
-          <div class="block blue"><div class="block-left"><div class="block-label">Antidumping</div><div class="block-desc">Direito antidumping — NCM correta</div></div><div class="block-val">R$ 476.778,28</div></div>
+          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div></div><div class="block-val">R$ 221.152,64</div></div>
+          <div class="block blue"><div class="block-left"><div class="block-label">Antidumping</div></div><div class="block-val">R$ 476.778,28</div></div>
         </div>
       </div>
       <div class="comp-card risk">
@@ -411,15 +355,12 @@
         <div class="total-highlight">
           <div class="total-highlight-label">Estimativa a pagar</div>
           <div class="total-highlight-val">R$ 380.907,79</div>
-          <div class="total-highlight-sub">+ exposição de até R$ 1.235.771,25 se canal vermelho</div>
         </div>
         <div class="blocks">
-          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div><div class="block-desc">Tributos regulares do processo</div></div><div class="block-val">R$ 221.152,64</div></div>
-          <div class="block blue"><div class="block-left"><div class="block-label">ICMS</div><div class="block-desc">Imposto adicional — nova NCM</div></div><div class="block-val">R$ 159.755,15</div></div>
+          <div class="block green"><div class="block-left"><div class="block-label">Impostos + Despachante</div></div><div class="block-val">R$ 221.152,64</div></div>
+          <div class="block blue"><div class="block-left"><div class="block-label">ICMS</div></div><div class="block-val">R$ 159.755,15</div></div>
           <div class="block red">
-            <div class="block-left">
-              <div class="block-label">Risco — Canal Vermelho</div>
-              <div class="block-desc">Exigências se houver fiscalização</div>
+            <div class="block-left"><div class="block-label">Risco — Canal Vermelho</div>
               <div class="risk-detail">
                 <div class="risk-detail-row"><span>Antidumping (principal)</span><span>R$ 476.778,28</span></div>
                 <div class="risk-detail-row"><span>Multa de Mora (3,3%)</span><span>R$ 15.733,68</span></div>
@@ -429,22 +370,18 @@
             </div>
             <div class="block-val">R$ 854.863,46</div>
           </div>
+          <div class="block orange">
+            <div class="block-left"><div class="block-label">Total no pior cenário</div><div class="block-desc">Impostos + ICMS + Canal Vermelho</div></div>
+            <div class="block-val">R$ 1.235.771,25</div>
+          </div>
         </div>
       </div>
     </div>
     <div class="delta-row">
-      <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia da ncm trocada se não houver canal</div><div class="delta-val blue">- R$ 317.023,13</div><div class="delta-sub">NCM trocada vs. NCM correta (sem canal vermelho)</div></div></div>
-      <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 537.840,33</div><div class="delta-sub">Custo total c/ risco vs. NCM correta (impostos + ICMS + multas)</div></div></div>
+        <div class="delta-card"><div class="delta-icon">💰</div><div><div class="delta-label">Economia sem risco</div><div class="delta-val blue">- R$ 317.023,13</div></div></div>
+        <div class="delta-card"><div class="delta-icon">⚠️</div><div><div class="delta-label">Exposição no pior cenário</div><div class="delta-val red">+ R$ 537.840,33</div></div></div>
     </div>
-    <div class="chart-wrap">
-      <div class="chart-title">Comparativo visual — K596</div>
-      <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#1e9e62"></span>Impostos + Desp.</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#2563eb"></span>Antidumping / ICMS</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#dc2626"></span>Risco (canal vermelho)</span>
-      </div>
-      <div style="position:relative;height:260px"><canvas id="chart-k596"></canvas></div>
-    </div>
+    <div class="chart-wrap"><div class="chart-title">Comparativo visual — K596</div><div style="position:relative;height:260px"><canvas id="chart-k596"></canvas></div></div>
   </div>
 
 </div>
